@@ -7,28 +7,25 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <meta name="description" content="This is the 7th project in the Treehouse Front End Web Development course. An WebApp Dashboard by Giuseppe Ocello, Student at Treehouse.">
    <!-- Linking to External fonts -->
-
-
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200;300;400&display=swap" rel="stylesheet">
    <!-- Linking to Stylesheets -->
    <link rel="stylesheet" href="css/normalize.css">
    <link rel="stylesheet" href="css/style.css">
    <!-- Link to Javascript files-->
    <script src="app.js"></script>
-   <title>WebApp Dashboard</title>
+   <title>Dashboard</title>
 </head>
 <body>
 
    <header>
       <h1>WebApp&trade;</h1>
-
+      
       <ul class="header">
-         <li><img class="notification-icon" src="svgs/bell.svg" alt="notification icon" href="#"></li>
-         <li>
-            <div id="student">
-               <img src="images/member-1.jpg">
-               <h2>Student Name</h2>
-            </div>
-         </li>
+         <li id="notification"><img class="notification-icon" src="svgs/bell.svg" alt="notification icon" href="#"></li>
+         <li id="student-avatar"><img class="avatar" src="images/member-1.jpg"></li>
+         <li id="student-name">Student Name</li>
       </ul>
    </header>
 
@@ -50,9 +47,9 @@
       <section id="traffic">
          <h2>TRAFFIC</h2>
          <ul>
+            <li id="hourly">Hourly</li>
             <li id="daily">Daily</li>
             <li id="weekly">Weekly</li>
-            <li id="hourly">Hourly</li>
             <li id="monthly">Monthly</li>
          </ul>
          <div id="chart">
@@ -76,21 +73,21 @@
          <ul>
             <li id="facebook">
                <div>
-                  <img class="icon" src="svgs/facebook.svg" alt="facebook icon">
+                  <img class="social" src="svgs/facebook.svg" alt="facebook icon">
                   <h3>Facebook</h3>
                   <p>10,320</p>
                </div>
             </li>
             <li id="instagram">
                <div>
-                  <img class="icon" src="svgs/instagram.svg" alt="instagram icon">
+                  <img class="social" src="svgs/instagram.svg" alt="instagram icon">
                   <h3>Instagram</h3>
                   <p>16,445</p>
                </div>
             </li>
             <li id="twiter">
                <div>
-                  <img class="icon" src="svgs/twitter.svg" alt="twiter icon">
+                  <img class="social" src="svgs/twitter.svg" alt="twiter icon">
                   <h3>Twitter</h3>
                   <p>22,189</p>
                </div>

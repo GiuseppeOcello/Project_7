@@ -1,6 +1,7 @@
 * {
    margin: 0px;
    padding: 0px;
+   font-family: 'Titillium Web', sans-serif;
 }
 
 /* Variables */
@@ -10,12 +11,13 @@
    --color-main-light: #D5D6EC;
    --color-main-dark: #4D4C72;
    --color-active-chart: #81C98F;
+   --color-social: #F5F5F5;
 
    --color-font: black;
    --color-font-light: #676767;
    
-   --font-size-large: 60px;
-   --font-size-medium: 20px;
+   --font-size-large: 15px;
+   --font-size-medium: 10px;
 
    --transition: all .2s ease-in-out;
  }
@@ -24,11 +26,18 @@
 header {
    display: flex;
    justify-content: space-between;
+   align-items: center;
    padding: 10px 12px;
    background-color: var(--color-main);
+   font-size: var(--font-size-large);
 }
 
-.header 
+.header {
+   display: flex;
+   justify-content: center;
+   gap: 10px;
+   align-items: center;
+}
 
 nav ul{
    display: flex;
@@ -38,10 +47,26 @@ nav ul{
    background-color: var(--color-main-dark);
 }
 
+#student-avatar {
+   padding-left: 8px;
+   border-left: 1px solid lightgrey;
+}
+
+nav ul:hover {
+   cursor: pointer;
+}
+
 ul {
    list-style: none;
 }
 
+h1 {
+   font-size: 25px;
+   margin: 0;
+}
+h2 {
+   display: block;
+}
 
 
 .notification-icon {
@@ -49,19 +74,120 @@ ul {
    height: 25px;
 }
 
-#student img {
-   border-radius: 50%;
-}
-
-#student img,.icon {
+.avatar,.icon {
    width: 35px;
    height: 35px;
+}
+
+.avatar {
+   border-radius: 50%;
 }
 
 .member-photo {
    width: 60px;
    height: 60px;
    border-radius: 50%;
+}
+
+main {
+   /* display: flex;
+   justify-content: center;
+   flex-direction: column;
+   align-items: center; */
+   padding: 10px;
+}
+
+#alert {
+   margin: 5px 15px;
+   padding: 8px;
+   display: flex;
+   justify-content: space-between;
+   border-radius: 10px;
+   background-color: var(--color-main);
+}
+
+
+#traffic ul {
+   display: flex;
+   padding: 10px;
+   justify-content: center;
+   gap: 15px;
+}
+
+#traffic li {
+   padding: 10px;
+   font-size: var(--font-size-large);
+   border-radius: 25px;
+   background-color: var(--color-active-chart);
+}
+
+#social-stats ul {
+   display: flex;
+   flex-direction: column;
+   padding: 10px;
+   align-items: center;
+   gap: 15px;
+}
+
+#social-stats li {
+   width: 100%;
+   padding: 5px;
+   font-size: var(--font-size-large);
+   border: 2px solid var(--color-main-light);
+   border-radius: 5px;
+   background-color: var(--color-social);
+}
+
+#social-stats div {
+   display: flex;
+   flex-wrap: wrap;
+   align-items: center;
+}
+
+#social-stats h3 {
+   font-size: 20px;
+   color: var(--color-main);
+}
+
+#social-stats p {
+   font-size: 35px;
+}
+
+
+.social {
+   width: 60px;
+   height: 60px;
+   float: left;
+   margin: 10px;
+   fill: var(--color-main);
+}
+
+#new-members div, #recent-activities div {
+   display: flex;
+   flex-direction: column;
+   padding: 10px 15px;
+   align-items: center;
+   border-bottom: 2px solid var(--color-main-light);
+}
+
+/* #new-members li, #recent-activities li {
+   width: 100%;
+   padding: 5px;
+   font-size: var(--font-size-large);
+   
+   
+} */
+
+
+.member-email {
+   color: var(--color-main);
+}
+
+#message-user, #settings {
+   display: flex;
+   flex-direction: column;
+   padding: 10px 15px;
+   align-items: center;
 }
 
 
@@ -94,6 +220,49 @@ nav {
 main {
    grid-area: main;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
