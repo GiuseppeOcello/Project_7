@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+   <!-- Informing the browser that the desing is optimize and no zoom out should be applied -->
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta name="description" content="This is the 7th project in the Treehouse Front End Web Development course. An WebApp Dashboard by Giuseppe Ocello, Student at Treehouse.">
+   <!-- Linking to External fonts -->
+
+
+   <!-- Linking to Stylesheets -->
+   <link rel="stylesheet" href="css/normalize.css">
+   <link rel="stylesheet" href="css/style.css">
+   <!-- Link to Javascript files-->
+   <script src="app.js"></script>
+   <title>WebApp Dashboard</title>
+</head>
+<body>
+
+   <header>
+      <h1>WebApp&trade;</h1>
+
+      <ul class="header">
+         <li><img class="notification-icon" src="svgs/bell.svg" alt="notification icon" href="#"></li>
+         <li>
+            <div id="student">
+               <img src="images/member-1.jpg">
+               <h2>Student Name</h2>
+            </div>
+         </li>
+      </ul>
+   </header>
+
+   <nav id="sidebar">
+      <ul>
+         <li><img class="icon" src="svgs/home.svg" alt="home icon" href="#"></li>
+         <li><img class="icon" src="svgs/bar-chart.svg" alt="analitics icon" href="#"></li>
+         <li><img class="icon" src="svgs/members.svg" alt="member icon" href="#"></li>
+         <li><img class="icon" src="svgs/settings.svg" al="settings icon" href="#"></li>
+      </ul>
+   </nav>
+
+   <main id="dashboard">
+      <h2>Dashboard</h2>
+      <div id="alert">
+         <p class="alert"><strog>Alert:</strog>You have unread messages</p>
+         <p class="close-btn">X</p>
+      </div>
+      <section id="traffic">
+         <h2>TRAFFIC</h2>
+         <ul>
+            <li id="daily">Daily</li>
+            <li id="weekly">Weekly</li>
+            <li id="hourly">Hourly</li>
+            <li id="monthly">Monthly</li>
+         </ul>
+         <div id="chart">
+
+         </div>
+      </section>
+      <section id="daily-traffic">
+         <h2>DAILY TRAFFIC</h2>
+         <div id="chart">
+            
+         </div>
+      </section>
+      <section id="mobile-users">
+         <h2>MOBILE USERS</h2>
+         <div id="chart">
+            
+         </div>
+      </section>
+      <section id="social-stats">
+         <h2>SOCIAL STATS</h2>
+         <ul>
+            <li id="facebook">
+               <div>
+                  <img class="icon" src="svgs/facebook.svg" alt="facebook icon">
+                  <h3>Facebook</h3>
+                  <p>10,320</p>
+               </div>
+            </li>
+            <li id="instagram">
+               <div>
+                  <img class="icon" src="svgs/instagram.svg" alt="instagram icon">
+                  <h3>Instagram</h3>
+                  <p>16,445</p>
+               </div>
+            </li>
+            <li id="twiter">
+               <div>
+                  <img class="icon" src="svgs/twitter.svg" alt="twiter icon">
+                  <h3>Twitter</h3>
+                  <p>22,189</p>
+               </div>
+            </li>
+         </ul>
+      </section>
+      
+      <section id="new-members">
+         <h2>NEW MEMBERS</h2>
+         <ul>
+            <li class="new-members">
+               <div>
+                  <img class="member-photo" src="images/member-1.jpg" alt="photo of Victoria Chambers">
+                  <h3 class="member-name">Victoria Chambers</h3>
+                  <p class="member-email">victoria.chambers80@example.com</p>
+                  <p class="member-join-date">10/15/20</p>
+               </div>
+            </li>
+            <li class="new-members">
+               <div>
+                  <img class="member-photo" src="images/member-2.jpg" alt="photo of Dale Byrd">
+                  <h3 class="member-name">Dale Byrd</h3>
+                  <p class="member-email">dale.byrd52@example.com</p>
+                  <p class="member-join-date">10/15/20</p>
+               </div>
+            </li>
+            <li class="new-members">
+               <div>
+                  <img class="member-photo" src="images/member-3.jpg" alt="photo of Dawn Wood">
+                  <h3 class="member-name">Dawn Wood</h3>
+                  <p class="member-email">dawn.wood16@example.com</p>
+                  <p class="member-join-date">10/15/20</p>
+               </div>
+            </li>
+            <li class="new-members">
+               <div>
+                  <img class="member-photo" src="images/member-4.jpg" alt="photo of Dan Oliver">
+                  <h3 class="member-name">Dan Oliver</h3>
+                  <p class="member-email">dan.oliver82@example.com</p>
+                  <p class="member-join-date">10/15/20</p>
+               </div>
+            </li>
+         </ul>
+      </section>
+      <section id="recent-activities">
+         <h2>RECENT ACTIVITY</h2>
+         <ul>
+            <li class="recent-activity">
+               <div>
+                  <img class="member-photo" src="images/member-1.jpg" alt="photo of Victoria Chambers">
+                  <h3 class="activity">Victoria Chambers commented on <strong>WebApp's SEO Tips</strong></h3>
+                  <p class="activity-elapsed-time">4 hours ago</p>
+               </div>
+            </li>
+            <li class="recent-activity">
+               <div>
+                  <img class="member-photo" src="images/member-2.jpg" alt="photo of Dale Byrd">
+                  <h3 class="activity">Dale Byrd liked the post<strong>Facebook's changes for 2021</strong></h3>
+                  <p class="activity-elapsed-time">5 hours ago</p>
+               </div>
+            </li>
+            <li class="recent-activity">
+               <div>
+                  <img class="member-photo" src="images/member-3.jpg" alt="photo of Dawn Wood">
+                  <h3 class="activity">Dawn Wood commented on <strong>Facebook's changes for 2021</strong></h3>
+                  <p class="activity-elapsed-time">5 hours ago</p>
+               </div>
+            </li>
+            <li class="recent-activity">
+               <div>
+                  <img class="member-photo" src="images/member-4.jpg" alt="photo of Dan Oliver">
+                  <h3 class="activity">Dan Oliver posted<strong>WebApp's SEO Tips</strong></h3>
+                  <p class="activity-elapsed-time">1 day ago</p>
+               </div>
+            </li>
+         </ul>
+      </section>
+      <section id="message-user">
+         <h2>MESSAGE USER</h2>
+         <form>
+            <input class="input" type="text" id="search-for-user" placeholder="Search for user"><br>
+
+            <label for="message-for-user">Message for user</label><br>
+            <textarea id="message-for-user" name="message-for-user" placeholder="Message for user">
+
+            </textarea>
+            <button type="submit" id="btn-send-message" onclick="">SEND</button>
+         </form>
+      </section>
+      <section id="settings">
+         <h2>SETTINGS</h2>
+         
+         <div class="setting">
+            <p>Send Email Notification</p>
+            <label class="switch">
+               <input type="checkbox">
+               <span class="slider round"></span>
+             </label>
+         </div>
+
+         <div class="setting">
+            <p>Set Profile to Public</p>
+            <label class="switch">
+               <input type="checkbox">
+               <span class="slider round"></span>
+             </label>
+         </div>
+
+         <label for="time-zone">Time Zone</label><br>
+         <select id="time-zove" name="user-state">
+            <option value="" disabled selected="selected">Select Timezone</option>
+            <option value=""></option>
+            <option value=""></option>
+         </select>
+         <button type="submit" id="btn-save-settings" onclick="">SAVE</button>
+         <button type="submit" id="btn-discard-settings" onclick="">CANCEL</button> 
+      </section>
+   </main>
+   
+</body>
+</html>
