@@ -39,7 +39,10 @@
    </nav>
 
    <main id="dashboard">
-      <h2>Dashboard</h2>
+      <section id="headline">
+         <h2>Dashboard</h2>
+         <input type="search" placeholder="Search..."/>
+      </section>
       <div id="alert">
          <p class="alert"><strog>Alert:</strog>You have unread messages</p>
          <p class="close-btn">X</p>
@@ -165,45 +168,48 @@
             </li>
          </ul>
       </section>
-      <section id="message-user">
+      <section class="message-user">
          <h2>MESSAGE USER</h2>
-         <form>
-            <input class="input" type="text" id="search-for-user" placeholder="Search for user"><br>
+         <form id="message-user" action="post">
+            <input class="input" type="text" id="search-for-user" placeholder="Search for user">
 
-            <label for="message-for-user">Message for user</label><br>
-            <textarea id="message-for-user" name="message-for-user" placeholder="Message for user">
-
-            </textarea>
+            <label for="message-for-user">Message for user</label>
+            <textarea id="message-for-user" name="message-for-user" placeholder="Message for user"></textarea>
             <button type="submit" id="btn-send-message" onclick="">SEND</button>
          </form>
       </section>
-      <section id="settings">
+      <section class="settings">
          <h2>SETTINGS</h2>
-         
-         <div class="setting">
-            <p>Send Email Notification</p>
-            <label class="switch">
-               <input type="checkbox">
-               <span class="slider round"></span>
-             </label>
-         </div>
+         <form id="settings" action="post">
+            <div class="setting">
+               <p>Send Email Notification</p>
+               <label class="switch">
+                  <input type="checkbox">
+                  <span class="slider round"></span>
+               </label>
+            </div>
 
-         <div class="setting">
-            <p>Set Profile to Public</p>
-            <label class="switch">
-               <input type="checkbox">
-               <span class="slider round"></span>
-             </label>
-         </div>
+            <div class="setting">
+               <p>Set Profile to Public</p>
+               <label class="switch">
+                  <input type="checkbox">
+                  <span class="slider round"></span>
+               </label>
+            </div>
 
-         <label for="time-zone">Time Zone</label><br>
-         <select id="time-zove" name="user-state">
-            <option value="" disabled selected="selected">Select Timezone</option>
-            <option value=""></option>
-            <option value=""></option>
-         </select>
-         <button type="submit" id="btn-save-settings" onclick="">SAVE</button>
-         <button type="submit" id="btn-discard-settings" onclick="">CANCEL</button> 
+            <label for="time-zone">Time Zone</label><br>
+            <select id="time-zove" name="user-state">
+               <option value="" disabled selected="selected">Select Timezone</option>
+               <option value="0">GMT</option>
+               <option value="1">GMT + 1:00 ECT</option>
+               <option value="2">GMT + 2:00 EET</option>
+               <option value="3">GMT + 3:00 ART</option>
+               <option value="4">GMT + 4:00 EAT</option>
+               <option value="5">GMT + 5:00 MET</option>
+            </select>
+            <button type="submit" id="btn-save-settings" >SAVE</button>
+            <button type="submit" id="btn-discard-settings" >CANCEL</button> 
+         </form>
       </section>
    </main>
    

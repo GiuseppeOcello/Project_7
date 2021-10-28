@@ -1,7 +1,10 @@
 * {
+   box-sizing: border-box;
    margin: 0px;
    padding: 0px;
    font-family: 'Titillium Web', sans-serif;
+   
+   
 }
 
 /* Variables */
@@ -11,9 +14,10 @@
    --color-main-light: #D5D6EC;
    --color-main-dark: #4D4C72;
    --color-active-chart: #81C98F;
-   --color-social: #F5F5F5;
+   --color-back-light: #F5F5F5;
 
-   --color-font: black;
+   --color-font-primary: black;
+   --color-font-secondary: white;
    --color-font-light: #676767;
    
    --font-size-large: 15px;
@@ -23,20 +27,38 @@
  }
 
 /* main */
+
+body {
+   display: grid;
+   grid-template-columns: 50px auto;
+   /* Grid area content arrangement */
+   grid-template-areas: 
+      "header header"
+      "aside aside"
+      "main main";
+   ;
+}
+
 header {
+   grid-area: header;
    display: flex;
    justify-content: space-between;
    align-items: center;
    padding: 10px 12px;
    background-color: var(--color-main);
    font-size: var(--font-size-large);
+   color: var(--color-font-secondary);
 }
 
 .header {
    display: flex;
    justify-content: center;
-   gap: 10px;
    align-items: center;
+   gap: 10px;
+}
+
+nav {
+   grid-area: aside;
 }
 
 nav ul{
@@ -45,6 +67,15 @@ nav ul{
    gap: 25px;
    padding: 10px;
    background-color: var(--color-main-dark);
+}
+
+main {
+   grid-area: main;
+}
+
+section {
+   padding: 0 10px;
+   border-bottom: 2px solid var(--color-main-light);
 }
 
 #student-avatar {
@@ -65,9 +96,41 @@ h1 {
    margin: 0;
 }
 h2 {
-   display: block;
+   margin: 10px 0;
 }
 
+h3 {
+   font-weight:400;
+}
+
+/* main h2:first-of-type {
+   margin-left: 10px;
+} */
+
+button, input, textarea, select {
+   width: 100%;
+   padding: 10px;
+   border: 2px solid var(--color-main-light);
+   border-radius: 8px;
+}
+
+input, textarea, select {
+   background-color: var(--color-back-light);
+}
+
+button {
+   color: var(--color-font-secondary);
+}
+
+form {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 15px;
+   padding-bottom: 10px;
+}
+
+/* === Header === */
 
 .notification-icon {
    width: 25px;
@@ -89,13 +152,9 @@ h2 {
    border-radius: 50%;
 }
 
-main {
-   /* display: flex;
-   justify-content: center;
-   flex-direction: column;
-   align-items: center; */
-   padding: 10px;
-}
+/* === === */
+
+/* === alert banner === */
 
 #alert {
    margin: 5px 15px;
@@ -104,14 +163,16 @@ main {
    justify-content: space-between;
    border-radius: 10px;
    background-color: var(--color-main);
+   color: var(--color-font-secondary);
 }
 
+/* === charts === */
 
 #traffic ul {
    display: flex;
    padding: 10px;
    justify-content: center;
-   gap: 15px;
+   gap: 10px;
 }
 
 #traffic li {
@@ -120,6 +181,8 @@ main {
    border-radius: 25px;
    background-color: var(--color-active-chart);
 }
+
+/* === Social Stats === */
 
 #social-stats ul {
    display: flex;
@@ -135,7 +198,7 @@ main {
    font-size: var(--font-size-large);
    border: 2px solid var(--color-main-light);
    border-radius: 5px;
-   background-color: var(--color-social);
+   background-color: var(--color-back-light);
 }
 
 #social-stats div {
@@ -162,64 +225,55 @@ main {
    fill: var(--color-main);
 }
 
+/* === New Members and Recent Acctivity Sections === */
+
 #new-members div, #recent-activities div {
    display: flex;
    flex-direction: column;
    padding: 10px 15px;
    align-items: center;
+   
+}
+
+#new-members li, #recent-activities li {
    border-bottom: 2px solid var(--color-main-light);
 }
 
-/* #new-members li, #recent-activities li {
-   width: 100%;
-   padding: 5px;
-   font-size: var(--font-size-large);
-   
-   
-} */
-
+#new-members li:last-child, 
+#recent-activities li:last-child {
+   padding-bottom: 0;
+   border-bottom: none;
+}
 
 .member-email {
    color: var(--color-main);
 }
 
-#message-user, #settings {
+/* === Message User Section=== */
+
+#message-for-user {
+   height: 150px;
+   color: var(--color-font-light);
+}
+
+/* === Setting Section === */
+
+.setting {
+   width: 100%;
    display: flex;
-   flex-direction: column;
-   padding: 10px 15px;
+   flex-direction: row;
+   /* margin: 10px 0 10px 0; */
+   justify-content: space-between;
    align-items: center;
 }
 
 
-
-
-
-
-
-
-
-
-/* Grid area content arrangement */
-body {
-   display: grid;
-   grid-template-columns: 50px auto;
-   grid-template-areas: 
-      "header header"
-      "aside aside"
-      "main main";
-   ;
+#btn-discard-settings {
+   background-color: var(gray);
 }
 
-header {
-   grid-area: header;
-}
 
-nav {
-   grid-area: aside;
-}
-main {
-   grid-area: main;
-}
+
 
 
 
@@ -298,7 +352,7 @@ main {
    left: 0;
    right: 0;
    bottom: 0;
-   background-color: #ccc;
+   background-color: var(--color-main);
    -webkit-transition: .4s;
    transition: .4s;
  }
