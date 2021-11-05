@@ -28,9 +28,10 @@
 
 /* main */
 
-body {
+.grid-container { /* body */
    display: grid;
-   grid-template-columns: 50px auto;
+   grid-template-columns: 100%;
+   grid-template-rows: auto;
    /* Grid area content arrangement */
    grid-template-areas: 
       "header header"
@@ -66,10 +67,10 @@ nav ul{
    justify-content: center;
    gap: 25px;
    padding: 10px;
-   background-color: var(--color-main-dark);
 }
 
 main {
+   display: grid;
    grid-area: main;
 }
 
@@ -78,9 +79,8 @@ section {
    border-bottom: 2px solid var(--color-main-light);
 }
 
-#student-avatar {
-   padding-left: 8px;
-   border-left: 1px solid lightgrey;
+section:first-child {
+   border-bottom: none;
 }
 
 nav ul:hover {
@@ -103,9 +103,11 @@ h3 {
    font-weight:400;
 }
 
-/* main h2:first-of-type {
-   margin-left: 10px;
-} */
+a {
+   color: var(--color-main);
+}
+
+/* Components */
 
 button, input, textarea, select {
    width: 100%;
@@ -120,6 +122,13 @@ input, textarea, select {
 
 button {
    color: var(--color-font-secondary);
+   background-color: var(--color-main);
+   transition: var(--transition);
+}
+
+button:hover {
+   font-weight: 500;
+   background-color: var(--color-main-dark);
 }
 
 form {
@@ -142,8 +151,19 @@ form {
    height: 35px;
 }
 
+.social-icon {
+   width: 45px;
+   height: 45px;
+   margin-left: 10px;
+}
+
 .avatar {
    border-radius: 50%;
+}
+
+#student-avatar {
+   padding-left: 8px;
+   border-left: 1px solid lightgrey;
 }
 
 .member-photo {
@@ -152,7 +172,30 @@ form {
    border-radius: 50%;
 }
 
+#sidebar {
+   background-color: var(--color-main-dark);
+}
+
 /* === === */
+
+#headline {
+   display: flex;
+   flex-direction: row;
+   align-items: flex-start;
+   padding-right: 0;
+}
+
+.tab {
+   height: 50px;
+   width: 100%;
+   margin: auto;
+   margin-left: 20px;
+   margin-right: auto;
+   padding: 0;
+   background-color: #F7F7F7;
+   border-left: 2px solid var(--color-main-light);
+   border-bottom: 2px solid var(--color-main-light);
+}
 
 /* === alert banner === */
 
@@ -168,14 +211,14 @@ form {
 
 /* === charts === */
 
-#traffic ul {
+.traffic ul {
    display: flex;
    padding: 10px;
    justify-content: center;
    gap: 10px;
 }
 
-#traffic li {
+.traffic li {
    padding: 10px;
    font-size: var(--font-size-large);
    border-radius: 25px;
@@ -184,7 +227,7 @@ form {
 
 /* === Social Stats === */
 
-#social-stats ul {
+.social-stats ul {
    display: flex;
    flex-direction: column;
    padding: 10px;
@@ -192,7 +235,11 @@ form {
    gap: 15px;
 }
 
-#social-stats li {
+.social-stats li {
+   display: flex;
+   flex-wrap: wrap;
+   align-items: center;
+   gap: 15px;
    width: 100%;
    padding: 5px;
    font-size: var(--font-size-large);
@@ -201,21 +248,10 @@ form {
    background-color: var(--color-back-light);
 }
 
-#social-stats div {
-   display: flex;
-   flex-wrap: wrap;
-   align-items: center;
-}
-
-#social-stats h3 {
+.social-stats h3 {
    font-size: 20px;
    color: var(--color-main);
 }
-
-#social-stats p {
-   font-size: 35px;
-}
-
 
 .social {
    width: 60px;
@@ -225,9 +261,23 @@ form {
    fill: var(--color-main);
 }
 
+.social-icon svg {
+   fill: var(--color-main);
+}
+
+.social-name {
+   font-size: 18px;
+   color: var(--color-main);
+}
+
+.social-analitics {
+   font-size: 35px;
+   color: var(--color-font-light);
+}
+
 /* === New Members and Recent Acctivity Sections === */
 
-#new-members div, #recent-activities div {
+.new-members , .recent-activities {
    display: flex;
    flex-direction: column;
    padding: 10px 15px;
@@ -235,19 +285,21 @@ form {
    
 }
 
-#new-members li, #recent-activities li {
+.new-members li, .recent-activities li {
    border-bottom: 2px solid var(--color-main-light);
 }
 
-#new-members li:last-child, 
-#recent-activities li:last-child {
+.new-members li:last-child, 
+.recent-activities li:last-child {
    padding-bottom: 0;
    border-bottom: none;
 }
 
-.member-email {
-   color: var(--color-main);
+p .member-name {
+   font-weight:400;
 }
+
+
 
 /* === Message User Section=== */
 
@@ -267,9 +319,14 @@ form {
    align-items: center;
 }
 
-
 #btn-discard-settings {
-   background-color: var(gray);
+   background-color: #999;
+}
+
+.btn-wrapper {
+   display: flex;
+   gap: 15px;
+   width: 100%;
 }
 
 
@@ -390,4 +447,131 @@ form {
  
  .slider.round:before {
    border-radius: 50%;
+ }
+
+
+
+
+
+ /* === Media Query === */
+
+ @media (min-width: 320px) {
+   .grid-container {
+      
+      /* Grid area content arrangement */
+      grid-template-columns: 55px 1fr;
+      grid-template-areas: 
+         "header header"
+         "aside main"
+         "aside main";
+   }
+
+   nav ul {
+      flex-direction: column;
+      align-items: center;
+      
+   }
+
+   main {
+      grid-template-columns: 50%;
+   }
+
+   #headline {
+      grid-column: 1 / span 2;
+   }
+
+   #alert {
+      grid-column: 1 / span 2;
+   }
+
+   .traffic,
+   .social-stats,
+   .new-members,
+   .recent-activities,
+   .message-user,
+   .settings  {
+      grid-column: 1 / span 2;
+   }
+
+   .daily-traffic {
+      grid-column: 1 / span 1;
+   }
+
+   .mobile-users {
+      grid-column: 2 / span 1;
+   }
+
+   .social-stats ul {
+      flex-direction: row;
+   }
+
+   .recent-activity p {
+      display: block;
+   }
+
+   .traffic-header {
+      display: flex;
+      justify-content: space-between;
+   }
+
+   .new-members div, .recent-activities div {
+      flex-direction: row;
+      padding: 10px 15px;
+      justify-content: space-between;
+   }
+ }
+
+ @media (min-width: 768px) {
+   .grid-container {
+      
+      /* Grid area content arrangement */
+      grid-template-columns: 55px 1fr;
+      grid-template-areas: 
+         "header header"
+         "aside main"
+         "aside main";
+   }
+
+   nav ul {
+      flex-direction: column;
+      align-items: center;
+      
+   }
+
+   main {
+      grid-template-columns: 50%;
+   }
+
+   #headline {
+      grid-column: 1 / span 2;
+   }
+
+   #alert {
+      grid-column: 1 / span 2;
+   }
+
+   .traffic, .social-stats {
+      grid-column: 1 / span 2;
+   }
+
+   .daily-traffic, .new-members, .message-user {
+      grid-column: 1 / span 1;
+   }
+
+   .mobile-users, .recent-activities, .settings {
+      grid-column: 2 / span 1;
+   }
+
+   .social-stats ul {
+      flex-direction: row;
+   }
+
+   .recent-activity p {
+      display: block;
+   }
+
+   .traffic-header {
+      display: flex;
+      justify-content: space-between;
+   }
  }
