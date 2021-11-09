@@ -100,7 +100,9 @@ h2 {
 }
 
 h3 {
-   font-weight:400;
+   font-size: 18px;
+   font-weight:600;
+   margin-top: 10px;
 }
 
 a {
@@ -151,12 +153,6 @@ form {
    height: 35px;
 }
 
-.social-icon {
-   width: 45px;
-   height: 45px;
-   margin-left: 10px;
-}
-
 .avatar {
    border-radius: 50%;
 }
@@ -201,7 +197,7 @@ form {
 
 #alert {
    margin: 5px 15px;
-   padding: 8px;
+   padding: 10px;
    display: flex;
    justify-content: space-between;
    border-radius: 10px;
@@ -248,10 +244,10 @@ form {
    background-color: var(--color-back-light);
 }
 
-.social-stats h3 {
+/* .social-stats h3 {
    font-size: 20px;
    color: var(--color-main);
-}
+} */
 
 .social {
    width: 60px;
@@ -261,8 +257,21 @@ form {
    fill: var(--color-main);
 }
 
-.social-icon svg {
-   fill: var(--color-main);
+.social-icon{
+   position: relative;
+   width: 50px;
+   height: 50px;
+   margin-left: 10px;
+   border-radius: 50%;
+   background-color: var(--color-main);
+}
+svg {
+   position: absolute;
+   left: calc(50px/4);
+   top: calc(50px/4);
+   width: 25px;
+   height: 25px;
+   fill: white;
 }
 
 .social-name {
