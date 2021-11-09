@@ -277,20 +277,17 @@ form {
 
 /* === New Members and Recent Acctivity Sections === */
 
-.new-members , .recent-activities {
+.new-members , .recent-activity {
    display: flex;
    flex-direction: column;
    padding: 10px 15px;
    align-items: center;
+   border-bottom: 2px solid var(--color-main-light);
    
 }
 
-.new-members li, .recent-activities li {
-   border-bottom: 2px solid var(--color-main-light);
-}
-
-.new-members li:last-child, 
-.recent-activities li:last-child {
+.new-members:last-child, 
+.recent-activity:last-child {
    padding-bottom: 0;
    border-bottom: none;
 }
@@ -456,35 +453,34 @@ p .member-name {
  /* === Media Query === */
 
  @media (min-width: 320px) {
-   .grid-container {
+   /* .grid-container {
       
-      /* Grid area content arrangement */
       grid-template-columns: 55px 1fr;
       grid-template-areas: 
          "header header"
          "aside main"
          "aside main";
-   }
+   } */
 
-   nav ul {
+   /* nav ul {
       flex-direction: column;
       align-items: center;
       
-   }
+   } */
 
-   main {
+   /* main {
       grid-template-columns: 50%;
-   }
+   } */
 
-   #headline {
+   /* #headline {
       grid-column: 1 / span 2;
-   }
+   } */
 
-   #alert {
+   /* #alert {
       grid-column: 1 / span 2;
-   }
+   } */
 
-   .traffic,
+   /* .traffic,
    .social-stats,
    .new-members,
    .recent-activities,
@@ -518,7 +514,7 @@ p .member-name {
       flex-direction: row;
       padding: 10px 15px;
       justify-content: space-between;
-   }
+   } */
  }
 
  @media (min-width: 768px) {
