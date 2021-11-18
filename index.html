@@ -14,7 +14,7 @@
    <link rel="stylesheet" href="css/normalize.css">
    <link rel="stylesheet" href="css/style.css">
    <!-- Link to Javascript files-->
-   <script src="app.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js"></script>
    <title>Dashboard</title>
 </head>
 <body class="grid-container">
@@ -31,10 +31,10 @@
 
    <nav id="sidebar">
       <ul>
-         <li><img class="icon" src="svgs/home.svg" alt="home icon" href="#"></li>
-         <li><img class="icon" src="svgs/bar-chart.svg" alt="analitics icon" href="#"></li>
-         <li><img class="icon" src="svgs/members.svg" alt="member icon" href="#"></li>
-         <li><img class="icon" src="svgs/settings.svg" al="settings icon" href="#"></li>
+         <li><img class="home-menu-link" src="svgs/home.svg" alt="home icon" href="#"></li>
+         <li><img class="analitics-menu-link" src="svgs/bar-chart.svg" alt="analitics icon" href="#"></li>
+         <li><img class="members-menu-link" src="svgs/members.svg" alt="member icon" href="#"></li>
+         <li><img class="settings-menu-link" src="svgs/settings.svg" al="settings icon" href="#"></li>
       </ul>
    </nav>
 
@@ -58,7 +58,7 @@
             </ul>
           </div>
          <div class="chart-traffic">
-            <canvas id="chart-traffic"></canvas>
+            <canvas id="chart-traffic" ></canvas>
          </div>
       </section>
       <section class="daily-traffic">
@@ -67,7 +67,7 @@
             <canvas id="chart-daily-traffic"></canvas>
          </div>
       </section>
-      <section id="mobile-users">
+      <section class="mobile-users">
          <h3>MOBILE USERS</h3>
          <div class="chart-mobile-users">
             <canvas id="chart-mobile-users"></canvas>
@@ -116,7 +116,7 @@
          <h3>NEW MEMBERS</h3>
             <div class="new-members">
                <img class="member-photo" src="images/member-1.jpg" alt="photo of Victoria Chambers">
-               <div>
+               <div class="text">
                   <p class="member-name">Victoria Chambers</p>
                   <a href="#">victoria.chambers80@example.com</a>
                </div>
@@ -124,7 +124,7 @@
             </div>
             <div class="new-members"> 
                <img class="member-photo" src="images/member-2.jpg" alt="photo of Dale Byrd">
-               <div>
+               <div class="text">
                   <p class="member-name">Dale Byrd</p>
                   <a href="#">dale.byrd52@example.com</a>
                </div> 
@@ -132,7 +132,7 @@
             </div>
             <div class="new-members">
                <img class="member-photo" src="images/member-3.jpg" alt="photo of Dawn Wood">
-               <div>
+               <div class="text">
                   <p class="member-name">Dawn Wood</p>
                   <a href="#">dawn.wood16@example.com</a>
                </div>
@@ -140,7 +140,7 @@
             </div>
             <div class="new-members">
                <img class="member-photo" src="images/member-4.jpg" alt="photo of Dan Oliver">
-               <div>
+               <div class="text">
                   <p class="member-name">Dan Oliver</p>
                   <a href="#">dan.oliver82@example.com</a>
                </div>
@@ -151,32 +151,32 @@
          <h3>RECENT ACTIVITY</h3>
             <div class="recent-activity">
                <img class="member-photo" src="images/member-1.jpg" alt="photo of Victoria Chambers">
-               <div>
-                  <p class="activity">Victoria Chambers commented on <strong>WebApp's SEO Tips</strong></p>
+               <div class="text">
+                  <p class="activity">Victoria Chambers commented on <strong> WebApp's SEO Tips</strong></p>
                   <p class="activity-elapsed-time">4 hours ago</p>
                </div>
                <p hidden=true >&gt;</p>
             </div>
             <div class="recent-activity">
                <img class="member-photo" src="images/member-2.jpg" alt="photo of Dale Byrd">
-               <div>
-                  <p class="activity">Dale Byrd liked the post<strong>Facebook's changes for 2021</strong></p>
+               <div class="text">
+                  <p class="activity">Dale Byrd liked the post<strong> Facebook's changes for 2021</strong></p>
                   <p class="activity-elapsed-time">5 hours ago</p>
                </div>
                <p hidden=true >&gt;</p>
             </div>
             <div class="recent-activity">
                <img class="member-photo" src="images/member-3.jpg" alt="photo of Dawn Wood">
-               <div>
-                  <p class="activity">Dawn Wood commented on <strong>Facebook's changes for 2021</strong></p>
+               <div class="text">
+                  <p class="activity">Dawn Wood commented on <strong> Facebook's changes for 2021</strong></p>
                   <p class="activity-elapsed-time">5 hours ago</p>
                </div>
                <p hidden=true >&gt;</p>
             </div>
             <div class="recent-activity">
                <img class="member-photo" src="images/member-4.jpg" alt="photo of Dan Oliver">
-               <div>
-                  <p class="activity">Dan Oliver posted<strong>WebApp's SEO Tips</strong></p>
+               <div class="text">
+                  <p class="activity">Dan Oliver posted<strong> WebApp's SEO Tips</strong></p>
                   <p class="activity-elapsed-time">1 day ago</p>
                </div>
                <p hidden=true >&gt;</p>
@@ -197,18 +197,18 @@
          <form id="settings" action="post">
             <div class="setting">
                <p>Send Email Notification</p>
-               <label class="switch">
-                  <input type="checkbox">
-                  <span class="slider round"></span>
-               </label>
+               <label class="switch" for="switch-1">
+                  <input class="slider-body" id="switch-1" type="checkbox">
+                  <span class="slider-tab send-email-notification"></span>
+                </label>
             </div>
 
             <div class="setting">
                <p>Set Profile to Public</p>
-               <label class="switch">
-                  <input type="checkbox">
-                  <span class="slider round"></span>
-               </label>
+               <label class="switch" for="switch-2">
+                  <input class="slider-body" id="switch-2" type="checkbox">
+                  <span class="slider-tab set-profile-to-public"></span>
+                </label>
             </div>
 
             <label for="time-zone" hidden=true></label><br>
@@ -229,5 +229,6 @@
       </section>
    </main>
    
+   <script src="app.js"></script>
 </body>
 </html>
