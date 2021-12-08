@@ -31,10 +31,10 @@
 
    <nav id="sidebar">
       <ul>
-         <li><img class="home-menu-link" src="svgs/home.svg" alt="home icon" href="#"></li>
-         <li><img class="analitics-menu-link" src="svgs/bar-chart.svg" alt="analitics icon" href="#"></li>
-         <li><img class="members-menu-link" src="svgs/members.svg" alt="member icon" href="#"></li>
-         <li><img class="settings-menu-link" src="svgs/settings.svg" al="settings icon" href="#"></li>
+         <li><a href="#"><img class="home-menu-link" src="svgs/home.svg" alt="home icon"></a></li>
+         <li><a href="#chart-traffic"><img class="analitics-menu-link" src="svgs/bar-chart.svg" alt="analitics icon"></a></li>
+         <li><a href="#new-members-container"><img class="members-menu-link" src="svgs/members.svg" alt="member icon"></a></li>
+         <li><a href="#settings"><img class="settings-menu-link" src="svgs/settings.svg" al="settings icon"></a></li>
       </ul>
    </nav>
 
@@ -43,18 +43,17 @@
          <h2>Dashboard</h2>
          <div class="tab"></div>
       </section>
-      <div id="alert">
-         <p class="alert"><strog>Alert:</strog>You have unread messages</p>
-         <p class="close-btn">X</p>
+      <div id="alert" >
+         <!-- Alerts will show up here -->
       </div>
       <section class="traffic">
-         <div class="traffic-header">
+         <div class="traffic-header" id="traffic-header">
             <h3>TRAFFIC</h3>
-            <ul>
-               <li id="hourly-link">Hourly</li>
-               <li id="daily-link">Daily</li>
-               <li id="weekly-link">Weekly</li>
-               <li id="monthly-link">Monthly</li>
+            <ul class="traffic-scales">
+               <li class="traffic-scale" id="hourly-link">Hourly</li>
+               <li class="traffic-scale" id="daily-link">Daily</li>
+               <li class="traffic-scale" id="weekly-link">Weekly</li>
+               <li class="traffic-scale" id="monthly-link">Monthly</li>
             </ul>
           </div>
          <div class="chart-traffic">
@@ -112,7 +111,7 @@
          </ul>
       </section>
       
-      <section class="new-members-container">
+      <section class="new-members-container" id="new-members-container">
          <h3>NEW MEMBERS</h3>
             <div class="new-members">
                <img class="member-photo" src="images/member-1.jpg" alt="photo of Victoria Chambers">
@@ -184,18 +183,19 @@
       </section>
       <section class="message-user">
          <h3>MESSAGE USER</h3>
-         <form id="message-user" action="post">
+         <form id="message-user">
             <input class="input" type="text" id="search-for-user" placeholder="Search for user">
 
             <label for="message-for-user" hidden=true></label>
             <textarea id="message-for-user" name="message-for-user" placeholder="Message for user"></textarea>
-            <button type="submit" id="btn-send-message" onclick="">SEND</button>
+            <button type="submit" id="btn-send-message">SEND</button>
          </form>
       </section>
       <section class="settings">
          <h3>SETTINGS</h3>
          <form id="settings" action="post">
-            <div class="setting">
+            <!-- Tuggle Switches -->
+            <div class="setting"> 
                <p>Send Email Notification</p>
                <label class="switch" for="switch-1">
                   <input class="slider-body" id="switch-1" type="checkbox">
@@ -203,7 +203,7 @@
                 </label>
             </div>
 
-            <div class="setting">
+            <div class="setting" id="setting">
                <p>Set Profile to Public</p>
                <label class="switch" for="switch-2">
                   <input class="slider-body" id="switch-2" type="checkbox">

@@ -162,6 +162,10 @@ form {
    padding-bottom: 10px;
 }
 
+canvas {
+   padding-bottom: 10px;
+}
+
 /* === Header === */
 
 .notification-icon {
@@ -195,7 +199,8 @@ form {
 }
 
 [id$="link"],
-[class$="link"] {
+[class$="link"],
+button {
    cursor: pointer;
    transition: all 0.3s ease-in-out;
 }
@@ -238,6 +243,10 @@ form {
    color: var(--color-font-secondary);
 }
 
+.alert-close-btn {
+   cursor: pointer;
+}
+
 /* === charts === */
 
 .traffic ul {
@@ -251,8 +260,10 @@ form {
    padding: 10px;
    font-size: var(--font-size-large);
    border-radius: 25px;
-   background-color: var(--color-active-chart);
+   background-color: var(--color-main-light);
 }
+
+
 
 /* === Social Stats === */
 
@@ -557,6 +568,7 @@ https://codepen.io/giuseppe-ocello/pen/ZEJMJRq?editors=1100 */
 
    .mobile-users {
       grid-column: 2 / span 1;
+      border-left: 2px solid var(--color-main-light);
    }
 
    /* main */
