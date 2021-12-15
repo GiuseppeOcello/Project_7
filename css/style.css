@@ -1,10 +1,10 @@
-* {
+*,
+*::before,
+*::after {
    box-sizing: border-box;
    margin: 0px;
    padding: 0px;
    font-family: 'Titillium Web', sans-serif;
-   
-   
 }
 
 /* Variables */
@@ -24,6 +24,17 @@
    --font-size-medium: 10px;
 
    --transition: all .2s ease-in-out;
+
+   /*  Set the dimensions of the Slider Switch  */
+  --switch-lenght: 130px;
+  --switch-height: 40px;
+  --switch-border: 2px;
+   /*  Set the colors of the slider Switch  */
+  --switch-color-off: lightgray;
+  --switch-color-on: var(--color-main);
+  --switch-color-border: darkgray;
+  /*  Set the font size of the slider Switch  */
+  --switch-font-size: 1em;
  }
 
 /* main */
@@ -41,6 +52,7 @@
 }
 
 header {
+   position: relative;
    grid-area: header;
    display: flex;
    justify-content: space-between;
@@ -100,7 +112,9 @@ h2 {
 }
 
 h3 {
-   font-weight:400;
+   font-size: 18px;
+   font-weight:600;
+   margin: 10px 0 15px 0;
 }
 
 a {
@@ -109,15 +123,25 @@ a {
 
 /* Components */
 
-button, input, textarea, select {
+button,
+input,
+textarea,
+select {
    width: 100%;
    padding: 10px;
    border: 2px solid var(--color-main-light);
    border-radius: 8px;
 }
 
-input, textarea, select {
+input,
+textarea,
+select {
    background-color: var(--color-back-light);
+}
+
+textarea {
+   height: 100px;
+   resize: none;
 }
 
 button {
@@ -139,22 +163,81 @@ form {
    padding-bottom: 10px;
 }
 
+canvas {
+   padding-bottom: 10px;
+}
+
 /* === Header === */
 
 .notification-icon {
    width: 25px;
    height: 25px;
+   transition: all 0.3s ease-in-out;
 }
 
-.avatar,.icon {
+.notification-icon:hover {
+   cursor: pointer;
+   animation: shake .3s ease-in-out .1s 3 forwards;
+}
+
+@keyframes shake {
+   0%    {transform: rotate(0deg);}
+   25%   {transform: rotate(15deg);}
+   50%   {transform: rotate(-15deg);}
+}
+
+#notification-bell {
+   position: relative;
+}
+
+.notification-link::before {
+   display: inline-block;
+   height: 6px;
+   width: 6px;
+   position: absolute;
+   left: 20px;
+   top: -4px;
+   content: "";
+   background-color: var(--color-active-chart);
+   border-radius: 50%;
+}
+
+/* Handles the Notification Bubbles showing up dynamically */
+[class^="notification-message"] {
+   position: absolute;
+   height: 35px;
+   width: 250px;
+   right: 15%;
+   display: flex;
+   justify-content: space-between;
+   margin: 5px 15px;
+   padding: 8px;
+   border-radius: 10px;
+   background-color: lightgreen;
+   color: black;
+}
+
+.notification-message1 {
+   top: 45px;
+}
+.notification-message2 {
+   top: calc(45px + 40px);
+}
+.notification-message3 {
+   top: calc(45px + 40px + 40px);
+}
+.notification-message {
+   top: calc(45px + 40px + 40px + 40px);
+}
+
+.notification-close-btn {
+   cursor: pointer;
+}
+
+.avatar,
+[class*="link"] {
    width: 35px;
    height: 35px;
-}
-
-.social-icon {
-   width: 45px;
-   height: 45px;
-   margin-left: 10px;
 }
 
 .avatar {
@@ -174,6 +257,18 @@ form {
 
 #sidebar {
    background-color: var(--color-main-dark);
+}
+
+[id$="link"],
+[class$="link"],
+button {
+   cursor: pointer;
+   transition: all 0.3s ease-in-out;
+}
+
+[id$="link"]:hover,
+[class$="link"]:hover {
+   transform: scale(1.1);
 }
 
 /* === === */
@@ -201,12 +296,16 @@ form {
 
 #alert {
    margin: 5px 15px;
-   padding: 8px;
+   padding: 10px;
    display: flex;
    justify-content: space-between;
    border-radius: 10px;
    background-color: var(--color-main);
    color: var(--color-font-secondary);
+}
+
+.alert-close-btn {
+   cursor: pointer;
 }
 
 /* === charts === */
@@ -221,7 +320,16 @@ form {
 .traffic li {
    padding: 10px;
    font-size: var(--font-size-large);
+   font-weight: 600;
    border-radius: 25px;
+}
+
+.traffic li:hover {
+   color: var(--color-active-chart);
+   background-color: var(--color-back-light);
+}
+
+.active {
    background-color: var(--color-active-chart);
 }
 
@@ -248,11 +356,6 @@ form {
    background-color: var(--color-back-light);
 }
 
-.social-stats h3 {
-   font-size: 20px;
-   color: var(--color-main);
-}
-
 .social {
    width: 60px;
    height: 60px;
@@ -261,8 +364,21 @@ form {
    fill: var(--color-main);
 }
 
-.social-icon svg {
-   fill: var(--color-main);
+.social-icon{
+   position: relative;
+   width: 50px;
+   height: 50px;
+   margin-left: 10px;
+   border-radius: 50%;
+   background-color: var(--color-main);
+}
+svg {
+   position: absolute;
+   left: calc(50px/4);
+   top: calc(50px/4);
+   width: 25px;
+   height: 25px;
+   fill: white;
 }
 
 .social-name {
@@ -277,21 +393,18 @@ form {
 
 /* === New Members and Recent Acctivity Sections === */
 
-.new-members , .recent-activities {
+.new-members,
+.recent-activity {
    display: flex;
    flex-direction: column;
-   padding: 10px 15px;
+   padding: 10px 0;
    align-items: center;
+   border-bottom: 2px solid var(--color-main-light);
    
 }
 
-.new-members li, .recent-activities li {
-   border-bottom: 2px solid var(--color-main-light);
-}
-
-.new-members li:last-child, 
-.recent-activities li:last-child {
-   padding-bottom: 0;
+.new-members:last-child, 
+.recent-activity:last-child {
    border-bottom: none;
 }
 
@@ -299,7 +412,22 @@ p .member-name {
    font-weight:400;
 }
 
+.text {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
 
+.activity {
+   text-align: center;
+}
+
+
+.recent-activity > p {
+   display: none;
+   font-weight: 600;
+   color: var(--color-main);
+}
 
 /* === Message User Section=== */
 
@@ -314,7 +442,6 @@ p .member-name {
    width: 100%;
    display: flex;
    flex-direction: row;
-   /* margin: 10px 0 10px 0; */
    justify-content: space-between;
    align-items: center;
 }
@@ -333,121 +460,94 @@ p .member-name {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* The switch - the box around the slider source https://www.w3schools.com/howto/howto_css_switch.asp */
+/* Reusable SLider Switch Designed by Giuseppe Ocello on codepen 
+https://codepen.io/giuseppe-ocello/pen/ZEJMJRq?editors=1100 */
 .switch {
    position: relative;
    display: inline-block;
-   width: 60px;
-   height: 34px;
+   margin-right: 10px;
+   width: var(--switch-lenght);
+   height: var(--switch-height);
  }
  
- /* Hide default HTML checkbox */
- .switch input {
-   opacity: 0;
+ /* Hiding the default look of the checkbox */
+ .slider-body {
    width: 0;
    height: 0;
+   opacity: 0;
  }
  
- /* The slider */
- .slider {
+ /* this is the sliding circle */
+ .slider-tab {
    position: absolute;
    cursor: pointer;
    top: 0;
-   left: 0;
    right: 0;
    bottom: 0;
-   background-color: var(--color-main);
-   -webkit-transition: .4s;
-   transition: .4s;
+   left: 0;
+   border: var(--switch-border) solid darkgray;
+   border-radius: calc(var(--switch-height)/2);
+   background-color: var(--switch-color-off);
  }
  
- .slider:before {
+ /* :before is used for the tab that will slide once clicked, :after is for the text ON */
+ .slider-tab:before,
+ .slider-tab:after {
    position: absolute;
-   content: "";
-   height: 26px;
-   width: 26px;
-   left: 4px;
-   bottom: 4px;
-   background-color: white;
-   -webkit-transition: .4s;
-   transition: .4s;
+   bottom: calc(((var(--switch-height) + var(--switch-border))*0.2)/2 - var(--switch-border));
+   width: calc(var(--switch-height)*0.8);
+   height: calc(var(--switch-height)*0.8);
+   transition: all .5s;
  }
  
- input:checked + .slider {
-   background-color: #2196F3;
- }
- 
- input:focus + .slider {
-   box-shadow: 0 0 1px #2196F3;
- }
- 
- input:checked + .slider:before {
-   -webkit-transform: translateX(26px);
-   -ms-transform: translateX(26px);
-   transform: translateX(26px);
- }
- 
- /* Rounded sliders */
- .slider.round {
-   border-radius: 34px;
- }
- 
- .slider.round:before {
+ .slider-tab:before {
+   left: calc(((var(--switch-height) + var(--switch-border))*0.2)/2 - var(--switch-border));
+   content:"";
+   border: var(--switch-border) solid var(--switch-color-border);
    border-radius: 50%;
+   background-color: white;
  }
+ 
+ .slider-tab:after {
+   left: calc(var(--switch-lenght) - var(--switch-height));
+   content:"OFF";
+   text-align: center;
+   line-height: calc(var(--switch-height)*0.8);
+   background-color: transparent;
+   font-size: var(--switch-font-size);
+ }
+ 
+ /* the magic part */
+ .slider-body:checked + .slider-tab {
+   background-color: var(--switch-color-on);
+ }
+ 
+ .slider-body:checked + .slider-tab:before {
+   transform: translateX(calc(var(--switch-lenght) - var(--switch-height)));
+ }
+ 
+ .slider-body:checked + .slider-tab:after {
+   content: "ON";
+   color: white;
+   transform: translateX(calc( (var(--switch-lenght) - var(--switch-height))*-1 ));
+ }
+ 
+ .slider-body:focus + .slider-tab {
+   box-shadow: 2px 2px 2px gray;
+ }
+ 
+ /* it set the classes to obtain the transition of the entire switch */
+ span {
+   transition: all .3s;
+ }
+ 
+ span:hover {
+   background-color: darkgray;
+   transform: scale(1.02);
+ }
+
+
+
 
 
 
@@ -455,21 +555,16 @@ p .member-name {
 
  /* === Media Query === */
 
- @media (min-width: 320px) {
+ @media screen and (min-width: 768px) {
+
+   /* Grid arrangement */
    .grid-container {
       
-      /* Grid area content arrangement */
       grid-template-columns: 55px 1fr;
       grid-template-areas: 
          "header header"
          "aside main"
          "aside main";
-   }
-
-   nav ul {
-      flex-direction: column;
-      align-items: center;
-      
    }
 
    main {
@@ -486,8 +581,8 @@ p .member-name {
 
    .traffic,
    .social-stats,
-   .new-members,
-   .recent-activities,
+   .new-members-container,
+   .recent-activities-container,
    .message-user,
    .settings  {
       grid-column: 1 / span 2;
@@ -499,8 +594,18 @@ p .member-name {
 
    .mobile-users {
       grid-column: 2 / span 1;
+      border-left: 2px solid var(--color-main-light);
    }
 
+   /* main */
+
+   nav ul {
+      flex-direction: column;
+      align-items: center;
+      
+   }
+
+   /* sections */
    .social-stats ul {
       flex-direction: row;
    }
@@ -514,28 +619,40 @@ p .member-name {
       justify-content: space-between;
    }
 
-   .new-members div, .recent-activities div {
+   .new-members-container div,
+   .recent-activities-container div {
       flex-direction: row;
-      padding: 10px 15px;
+      padding: 0 20px;
       justify-content: space-between;
+   }
+
+   .new-members-container > div,
+   .recent-activities-container > div {
+      padding: 10px 0;
+   }
+
+   div .text {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      flex-grow: 2;
+   }
+   
+   .switch {
+      margin-right: 40%;
    }
  }
 
- @media (min-width: 768px) {
+ @media screen and (min-width: 1024px) {
+   
+   /* grid arrangement */
    .grid-container {
       
-      /* Grid area content arrangement */
       grid-template-columns: 55px 1fr;
       grid-template-areas: 
          "header header"
          "aside main"
          "aside main";
-   }
-
-   nav ul {
-      flex-direction: column;
-      align-items: center;
-      
    }
 
    main {
@@ -550,18 +667,32 @@ p .member-name {
       grid-column: 1 / span 2;
    }
 
-   .traffic, .social-stats {
+   .traffic,
+   .social-stats {
       grid-column: 1 / span 2;
    }
 
-   .daily-traffic, .new-members, .message-user {
+   .daily-traffic,
+   .new-members-container,
+   .message-user {
       grid-column: 1 / span 1;
    }
 
-   .mobile-users, .recent-activities, .settings {
+   .mobile-users,
+   .recent-activities-container,
+   .settings {
       grid-column: 2 / span 1;
+      border-left: 2px solid var(--color-main-light);
    }
 
+   /* main  */
+   nav ul {
+      flex-direction: column;
+      align-items: center;
+      
+   }
+
+   /* sections */
    .social-stats ul {
       flex-direction: row;
    }
@@ -570,8 +701,16 @@ p .member-name {
       display: block;
    }
 
+   .activity {
+      text-align: start;
+   }
+
    .traffic-header {
       display: flex;
       justify-content: space-between;
+   }
+
+   #settings {
+      gap: 18px;
    }
  }
