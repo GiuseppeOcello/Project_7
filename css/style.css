@@ -31,7 +31,7 @@
   --switch-border: 2px;
    /*  Set the colors of the slider Switch  */
   --switch-color-off: lightgray;
-  --switch-color-on: magenta;
+  --switch-color-on: var(--color-main);
   --switch-color-border: darkgray;
   /*  Set the font size of the slider Switch  */
   --switch-font-size: 1em;
@@ -52,6 +52,7 @@
 }
 
 header {
+   position: relative;
    grid-area: header;
    display: flex;
    justify-content: space-between;
@@ -171,6 +172,66 @@ canvas {
 .notification-icon {
    width: 25px;
    height: 25px;
+   transition: all 0.3s ease-in-out;
+}
+
+.notification-icon:hover {
+   cursor: pointer;
+   animation: shake .3s ease-in-out .1s 3 forwards;
+}
+
+@keyframes shake {
+   0%    {transform: rotate(0deg);}
+   25%   {transform: rotate(15deg);}
+   50%   {transform: rotate(-15deg);}
+}
+
+#notification-bell {
+   position: relative;
+}
+
+.notification-link::before {
+   display: inline-block;
+   height: 6px;
+   width: 6px;
+   position: absolute;
+   left: 20px;
+   top: -4px;
+   content: "";
+   background-color: var(--color-active-chart);
+   border-radius: 50%;
+}
+
+/* Handles the Notification Bubbles showing up dynamically */
+[class^="notification-message"] {
+   position: absolute;
+   height: 35px;
+   width: 250px;
+   right: 15%;
+   display: flex;
+   justify-content: space-between;
+   margin: 5px 15px;
+   padding: 8px;
+   border-radius: 10px;
+   background-color: lightgreen;
+   color: black;
+}
+
+.notification-message1 {
+   top: 45px;
+}
+.notification-message2 {
+   top: calc(45px + 40px);
+}
+.notification-message3 {
+   top: calc(45px + 40px + 40px);
+}
+.notification-message {
+   top: calc(45px + 40px + 40px + 40px);
+}
+
+.notification-close-btn {
+   cursor: pointer;
 }
 
 .avatar,
@@ -259,11 +320,18 @@ button {
 .traffic li {
    padding: 10px;
    font-size: var(--font-size-large);
+   font-weight: 600;
    border-radius: 25px;
-   background-color: var(--color-main-light);
 }
 
+.traffic li:hover {
+   color: var(--color-active-chart);
+   background-color: var(--color-back-light);
+}
 
+.active {
+   background-color: var(--color-active-chart);
+}
 
 /* === Social Stats === */
 
@@ -329,7 +397,7 @@ svg {
 .recent-activity {
    display: flex;
    flex-direction: column;
-   padding: 10px 15px;
+   padding: 10px 0;
    align-items: center;
    border-bottom: 2px solid var(--color-main-light);
    
@@ -354,6 +422,13 @@ p .member-name {
    text-align: center;
 }
 
+
+.recent-activity > p {
+   display: none;
+   font-weight: 600;
+   color: var(--color-main);
+}
+
 /* === Message User Section=== */
 
 #message-for-user {
@@ -367,7 +442,6 @@ p .member-name {
    width: 100%;
    display: flex;
    flex-direction: row;
-   /* margin: 10px 0 10px 0; */
    justify-content: space-between;
    align-items: center;
 }
@@ -381,54 +455,6 @@ p .member-name {
    gap: 15px;
    width: 100%;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -596,8 +622,13 @@ https://codepen.io/giuseppe-ocello/pen/ZEJMJRq?editors=1100 */
    .new-members-container div,
    .recent-activities-container div {
       flex-direction: row;
-      padding: 10px 15px;
+      padding: 0 20px;
       justify-content: space-between;
+   }
+
+   .new-members-container > div,
+   .recent-activities-container > div {
+      padding: 10px 0;
    }
 
    div .text {
@@ -670,8 +701,16 @@ https://codepen.io/giuseppe-ocello/pen/ZEJMJRq?editors=1100 */
       display: block;
    }
 
+   .activity {
+      text-align: start;
+   }
+
    .traffic-header {
       display: flex;
       justify-content: space-between;
+   }
+
+   #settings {
+      gap: 18px;
    }
  }

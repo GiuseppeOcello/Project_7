@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
    <meta charset="UTF-8">
-   <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
    <!-- Informing the browser that the desing is optimize and no zoom out should be applied -->
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <meta name="description" content="This is the 7th project in the Treehouse Front End Web Development course. An WebApp Dashboard by Giuseppe Ocello, Student at Treehouse.">
@@ -23,10 +22,11 @@
       <h1>WebApp&trade;</h1>
       
       <ul class="header">
-         <li id="notification"><img class="notification-icon" src="svgs/bell.svg" alt="notification icon" href="#"></li>
-         <li id="student-avatar"><img class="avatar" src="images/member-1.jpg"></li>
-         <li id="student-name">Student Name</li>
+         <li id="notification-bell"><a href="#" class="notification-link"><img class="notification-icon" src="svgs/bell.svg" alt="notification icon"></a></li>
+         <li id="student-avatar"><img class="avatar" src="images/member-1.jpg" alt="Picture of the Student"></li>
+         <li id="student-name">Victoria Chambers</li>
       </ul>
+      
    </header>
 
    <nav id="sidebar">
@@ -34,9 +34,11 @@
          <li><a href="#"><img class="home-menu-link" src="svgs/home.svg" alt="home icon"></a></li>
          <li><a href="#chart-traffic"><img class="analitics-menu-link" src="svgs/bar-chart.svg" alt="analitics icon"></a></li>
          <li><a href="#new-members-container"><img class="members-menu-link" src="svgs/members.svg" alt="member icon"></a></li>
-         <li><a href="#settings"><img class="settings-menu-link" src="svgs/settings.svg" al="settings icon"></a></li>
+         <li><a href="#settings"><img class="settings-menu-link" src="svgs/settings.svg" alt="settings icon"></a></li>
       </ul>
    </nav>
+
+   
 
    <main id="dashboard">
       <section id="headline">
@@ -52,7 +54,7 @@
             <ul class="traffic-scales">
                <li class="traffic-scale" id="hourly-link">Hourly</li>
                <li class="traffic-scale" id="daily-link">Daily</li>
-               <li class="traffic-scale" id="weekly-link">Weekly</li>
+               <li class="traffic-scale active" id="weekly-link">Weekly</li>
                <li class="traffic-scale" id="monthly-link">Monthly</li>
             </ul>
           </div>
@@ -154,7 +156,7 @@
                   <p class="activity">Victoria Chambers commented on <strong> WebApp's SEO Tips</strong></p>
                   <p class="activity-elapsed-time">4 hours ago</p>
                </div>
-               <p hidden=true >&gt;</p>
+               <p>&gt;</p>
             </div>
             <div class="recent-activity">
                <img class="member-photo" src="images/member-2.jpg" alt="photo of Dale Byrd">
@@ -162,7 +164,7 @@
                   <p class="activity">Dale Byrd liked the post<strong> Facebook's changes for 2021</strong></p>
                   <p class="activity-elapsed-time">5 hours ago</p>
                </div>
-               <p hidden=true >&gt;</p>
+               <p>&gt;</p>
             </div>
             <div class="recent-activity">
                <img class="member-photo" src="images/member-3.jpg" alt="photo of Dawn Wood">
@@ -170,7 +172,7 @@
                   <p class="activity">Dawn Wood commented on <strong> Facebook's changes for 2021</strong></p>
                   <p class="activity-elapsed-time">5 hours ago</p>
                </div>
-               <p hidden=true >&gt;</p>
+               <p>&gt;</p>
             </div>
             <div class="recent-activity">
                <img class="member-photo" src="images/member-4.jpg" alt="photo of Dan Oliver">
@@ -178,7 +180,7 @@
                   <p class="activity">Dan Oliver posted<strong> WebApp's SEO Tips</strong></p>
                   <p class="activity-elapsed-time">1 day ago</p>
                </div>
-               <p hidden=true >&gt;</p>
+               <p>&gt;</p>
             </div>
       </section>
       <section class="message-user">
@@ -186,14 +188,13 @@
          <form id="message-user">
             <input class="input" type="text" id="search-for-user" placeholder="Search for user">
 
-            <label for="message-for-user" hidden=true></label>
             <textarea id="message-for-user" name="message-for-user" placeholder="Message for user"></textarea>
             <button type="submit" id="btn-send-message">SEND</button>
          </form>
       </section>
       <section class="settings">
          <h3>SETTINGS</h3>
-         <form id="settings" action="post">
+         <form id="settings" action="index.html">
             <!-- Tuggle Switches -->
             <div class="setting"> 
                <p>Send Email Notification</p>
@@ -211,15 +212,14 @@
                 </label>
             </div>
 
-            <label for="time-zone" hidden=true></label><br>
-            <select id="time-zove" name="user-state">
-               <option value="" disabled selected="selected">Select Timezone</option>
-               <option value="0">GMT</option>
-               <option value="1">GMT + 1:00 ECT</option>
-               <option value="2">GMT + 2:00 EET</option>
-               <option value="3">GMT + 3:00 ART</option>
-               <option value="4">GMT + 4:00 EAT</option>
-               <option value="5">GMT + 5:00 MET</option>
+            <select id="time-zone" name="user-state">
+               <option value="Not Set" disabled selected="selected">Select Timezone</option>
+               <option value="GMT + 0">GMT</option>
+               <option value="GMT + 1:00">GMT + 1:00 ECT</option>
+               <option value="GMT + 2:00">GMT + 2:00 EET</option>
+               <option value="GMT + 3:00">GMT + 3:00 ART</option>
+               <option value="GMT + 4:00">GMT + 4:00 EAT</option>
+               <option value="GMT + 5:00">GMT + 5:00 MET</option>
             </select>
             <div class="btn-wrapper">
                <button type="submit" id="btn-save-settings" >SAVE</button>
