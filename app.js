@@ -20,6 +20,7 @@ function createNewElement (elementName, content, className, appendTo) {
    element.className = className;
    element.innerHTML = content;
    appendTo.appendChild(element);
+   return element;
 }
 
 // === charts datas === //
@@ -189,9 +190,14 @@ let mobileUsersChart= new Chart(mobileUsersCanvas, {
 const notificationBell = document.querySelector("#notification-bell");
 const notificationArea = document.querySelector("header");
 const notificationDot = document.querySelector(".notification-link");
+let notificationMessage;
+let numberOfMessages;
+
+// counter used in to remove and translate the notifications
+let i;
 
 let messages = [
-   `<p><strog>Victora</strog> commented WebApp's SEO Tips</p>
+   `<p><strog>Victora</strog> commented WebApp's Tips</p>
    <p class="notification-close-btn"> X </p>
    `,
    `<p><strog>Dale</strog> Liked the Post</p>
@@ -202,24 +208,56 @@ let messages = [
    `,
    `<p><strog>New Memeber</strog> Dale Byrd</p>
    <p class="notification-close-btn"> X </p>
+   `,
+   `<p><strog>New Memeber</strog> Victoria Chambers</p>
+   <p class="notification-close-btn"> X </p>
+   `,
+   `<p><strog>New Memeber</strog> Dawn Wood</p>
+   <p class="notification-close-btn"> X </p>
+   `,
+   `<p><strog>New Memeber</strog> Dan Oliver</p>
+   <p class="notification-close-btn"> X </p>
    `];
 
+// Creates random notifications when the users clicks the notification bell
+// It chooses a random number of notification to show and to each a random message
+// taken from the array above
 notificationBell.addEventListener("click" , () => {
-   let numberOfMessages = generateRandomNumber(4,2);
-   for (let i=1; i<=numberOfMessages; i++ ) {
-      contentMessage = messages[generateRandomNumber(4,1)];
-      classToAssign = `notification-message${i}`;
-      createNewElement("div", contentMessage, classToAssign, notificationArea);
+   numberOfMessages = generateRandomNumber(3,1);
+
+   for (let i=0; i<=numberOfMessages; i++ ) {
+      contentMessage = messages[generateRandomNumber(messages.length,0)];
+      createNewElement ('div', contentMessage, 'notification-message', notificationArea)
+      let topDistance = 45 + 40 * i;
+      element.style.top = `${topDistance.toString()}px`;
    }
+   notificationMessage = document.querySelectorAll(".notification-message");
    notificationDot.classList.remove('notification-link');
+   i = 1;
 });
 
 // eliminate the notification when the respective x is clicked
 document.addEventListener('click', (e) => {
    const element = e.target;
+   let elementNext = element.parentElement.nextElementSibling;
+
    if (element.classList.contains("notification-close-btn")) {
       element.parentElement.remove();
+
+         // selects the sibling notification Divs and translate the upward once the 
+         // preceding notification is eliminated
+         while (elementNext) {
+            if (elementNext.className == "notification-message") {
+               if (i > 1) {
+                  elementNext.style.removeProperty("transform");
+               }
+               elementNext.style.transform = `translateY(${-40*i}px)`;
+            } 
+            elementNext = elementNext.nextElementSibling;
+         }
+      i ++;
    }
+   
 });
 
 // Shows the dot on the bell to signify new notifications
@@ -247,27 +285,90 @@ alertBanner.addEventListener('click', e => {
 });
 
 // === Messagig Section === //
-const user = document.querySelector("#search-for-user");
+const messageUserForm = document.querySelector('#message-user');
+const search = document.querySelector("#search-for-user");
 const message = document.querySelector("#message-for-user");
 const send = document.querySelector("#btn-send-message");
+let users = document.querySelectorAll(".member-name");
+let searchResult = [];
+let searchString = "";
+let suggestions = [];
+
+// autocomplete option for the search field
+
+search.addEventListener('keyup', (e) => {
+
+   // Pushes all the keys entered by the user into an array and removes the last entry if 
+   // Backspace is pressed
+   if (e.key !== "Backspace") {
+      searchString += e.key;
+   } else {
+      // searchString = searchString.slice(0, searchString.length - 1);
+      searchString = search.value;
+   }
+
+   // Check if any suggestion Div is already on the screen and removes them to get ready for the
+   // newlY entered key i.e. generated string
+   if (suggestions.length > 0) {
+      for (i = 0; i < suggestions.length; i++) {
+      suggestions[i].parentNode.removeChild(suggestions[i]);
+      }
+      suggestions = [];
+   }
+
+   // exits this function if the input is empty, following backspaces
+   if (searchString === "") return;
+   
+   // Check if the input matches any user in the users array and pushes the matching user
+   // into a search resul
+   for (let i = 0; i < users.length; i ++) {
+      if (users[i].innerHTML.toLowerCase().startsWith(searchString.toLowerCase())) {
+         searchResult.push(users[i].innerHTML);
+      }
+   }
+
+   // Creates a new div for each of the search result from the previous block of code
+   for (let i = 0; i < Math.min(searchResult.length, 6); i++) {
+      let userResult = `<p>${searchResult[i]}</p>`
+      createNewElement ('div', userResult, 'suggestion', messageUserForm)
+      let topDistance = 85 + 40 * i;
+      element.style.top = `${topDistance.toString()}px`;
+   }
+
+   suggestions = document.querySelectorAll('.suggestion');
+   searchResult = [];
+
+}); 
+
+// it sets the value of the search field if the user clicks on any one of the suggestions
+document.addEventListener('click', (e) => {   
+   let selection = e.target;
+   if (selection.parentElement.className === 'suggestion') {
+      search.value = selection.innerText;
+      for (i = 0; i < suggestions.length; i++) {
+         suggestions[i].parentNode.removeChild(suggestions[i]);
+      }
+      suggestions = [];
+   }
+});
 
 // Validates the form before sending the message
 send.addEventListener('click', (e) => {
-   if (user.value === "" && message.value ==="") {
+   if (search.value === "" && message.value ==="") {
       e.preventDefault();
-      fieldValidationVisualError(user);
+      fieldValidationVisualError(search);
       fieldValidationVisualError(message);
       alert("Please fill out the User and Message Fiels before Sending");
-   } else if (user.value === "") {
+   } else if (search.value === "") {
       e.preventDefault();
-      fieldValidationVisualError(user);
+      fieldValidationVisualError(search);
       alert("Please fill out the User Fiel before Sending");
    } else if (message.value === "") {
       e.preventDefault();
       fieldValidationVisualError(message);
       alert("Please fill out the Message Fiel before Sending");
    } else {
-      alert(`Message successfully sent to: ${user.value}`);
+      alert(`Message successfully sent to: ${search.value}`);
    } 
 });
 
@@ -279,28 +380,83 @@ function fieldValidationVisualError(field) {
 
 
 // === Settings Section === //
-let sendNotifications = document.querySelector("#switch-1");
-let setPublicProfile = document.querySelector("#switch-2");
-const timeZone = document.querySelector("#time-zone");
+let sendNotificationsSlider = document.querySelector("#switch-1");
+let setPublicProfileSlider = document.querySelector("#switch-2");
+let timeZoneOption = document.querySelector("#time-zone");
 const saveSettings = document.querySelector("#btn-save-settings");
+const discardSettings = document.querySelector("#btn-discard-settings");
 
-saveSettings.addEventListener('click', () => {
-   if (sendNotifications.checked) {
-      sendNotifications = "Active"
+//  Variables for local storage
+let sendNotifications;
+let setPublicProfile;
+let timeZone;
+
+// Reset settings
+discardSettings.addEventListener('click', (e) => {
+   localStorage.clear();
+   sendNotificationsSlider.checked = false;
+   setPublicProfileSlider.checked = false;
+   timeZoneOption.value = "None"; 
+   e.preventDefault();
+   alert("All the settings has been Reset");
+});
+
+
+// Initialize and set the stored settings
+getCurrentSetings();
+setCurrentSettings();
+
+// Retrieve settings from Local Storage
+function getCurrentSetings() {
+  sendNotifications = JSON.parse(localStorage.getItem('sendNotifications'));
+  setPublicProfile = JSON.parse(localStorage.getItem('setPublicProfile'));
+  timeZone = localStorage.getItem('timeZone');
+
+}
+
+// Sets the retrived settings to the page
+function setCurrentSettings() {
+   if (sendNotifications)  {
+      sendNotificationsSlider.checked = true;
    } else {
-      sendNotifications = "Not Active"
+      sendNotificationsSlider.checked = false;
    }
-   if (setPublicProfile.checked) {
-      setPublicProfile = "Active";
+
+   if (setPublicProfile) {
+      setPublicProfileSlider.checked = true;
+   } else {
+      setPublicProfileSlider.checked = false;
+   }
+
+   if (timeZone != null && timeZone !== "None") {
+      timeZoneOption.value = timeZone; 
+   } else {
+      timeZoneOption.value = "None";
+   }
+   
+}
+
+// Stores the new setting in local Storage and alerst the user about the changes
+saveSettings.addEventListener('click', (e) => {
+   
+   if (sendNotificationsSlider.checked) {
+      localStorage.setItem('sendNotifications', 'true');
+   } else {
+      localStorage.setItem('sendNotifications', 'false');
+   }
+   if (setPublicProfileSlider.checked) {
+      localStorage.setItem('setPublicProfile', 'true');
    }  else {
-      setPublicProfile = "Not Active";
+      localStorage.setItem('setPublicProfile', 'false');
    }
-   
+   if (timeZoneOption.value !== "Not Set") {
+      localStorage.setItem('timeZone', timeZoneOption.value);
+   } 
    alert(`Your new settings has been saved:
-      Send Email Notification: ${sendNotifications}
-      Set Profile to Public: ${setPublicProfile}
-      Timezone: ${timeZone.value}
+      Send Email Notification: ${localStorage.getItem("sendNotifications")}
+      Set Profile to Public: ${localStorage.getItem("setPublicProfile")}
+      Timezone: ${timeZoneOption.value}
    `);
-   
+   e.preventDefault();
 });
 

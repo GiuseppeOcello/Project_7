@@ -26,7 +26,7 @@
    --transition: all .2s ease-in-out;
 
    /*  Set the dimensions of the Slider Switch  */
-  --switch-lenght: 130px;
+  --switch-lenght: 120px;
   --switch-height: 40px;
   --switch-border: 2px;
    /*  Set the colors of the slider Switch  */
@@ -165,6 +165,7 @@ form {
 
 canvas {
    padding-bottom: 10px;
+   width: 100%;
 }
 
 /* === Header === */
@@ -207,27 +208,16 @@ canvas {
    position: absolute;
    height: 35px;
    width: 250px;
-   right: 15%;
+   right: 25px;
    display: flex;
    justify-content: space-between;
    margin: 5px 15px;
    padding: 8px;
    border-radius: 10px;
    background-color: lightgreen;
+   box-shadow: lightgrey 0 4px 5px;
    color: black;
-}
-
-.notification-message1 {
-   top: 45px;
-}
-.notification-message2 {
-   top: calc(45px + 40px);
-}
-.notification-message3 {
-   top: calc(45px + 40px + 40px);
-}
-.notification-message {
-   top: calc(45px + 40px + 40px + 40px);
+   transition: var(--transition);
 }
 
 .notification-close-btn {
@@ -271,7 +261,7 @@ button {
    transform: scale(1.1);
 }
 
-/* === === */
+/* === HeadLine === */
 
 #headline {
    display: flex;
@@ -312,16 +302,16 @@ button {
 
 .traffic ul {
    display: flex;
-   padding: 10px;
+   padding: 5px;
    justify-content: center;
    gap: 10px;
 }
 
 .traffic li {
-   padding: 10px;
+   padding: 5px;
    font-size: var(--font-size-large);
    font-weight: 600;
-   border-radius: 25px;
+   border-radius: 20px;
 }
 
 .traffic li:hover {
@@ -431,10 +421,38 @@ p .member-name {
 
 /* === Message User Section=== */
 
+.message-user {
+   position: relative;
+}
+
 #message-for-user {
+   /* position: relative; */
    height: 150px;
    color: var(--color-font-light);
 }
+
+.suggestion {
+   position: absolute;
+   /* top: 85px; */
+   left: -5px;
+   height: 35px;
+   width: 250px;
+   margin: 5px 15px;
+   padding: 8px;
+   border-radius: 10px;
+   background-color: rgb(231, 231, 231);
+   color: black;
+}
+
+.suggestion:hover {
+   background-color: lightgrey;
+   font-weight: 600;
+}
+
+/* [class^="notification-message"] {
+   
+} */
+
 
 /* === Setting Section === */
 
