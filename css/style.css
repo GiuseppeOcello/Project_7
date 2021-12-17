@@ -165,7 +165,7 @@ form {
 
 canvas {
    padding-bottom: 10px;
-   width: 100%;
+   max-width: 100%;
 }
 
 /* === Header === */
@@ -249,9 +249,17 @@ canvas {
    background-color: var(--color-main-dark);
 }
 
+#sidebar svg {
+   position: inherit;
+   stroke-width: 2px;
+   width: 30px;
+   height: 30px;
+}
+
 [id$="link"],
 [class$="link"],
-button {
+button,
+#sidebar svg {
    cursor: pointer;
    transition: all 0.3s ease-in-out;
 }
@@ -259,6 +267,11 @@ button {
 [id$="link"]:hover,
 [class$="link"]:hover {
    transform: scale(1.1);
+}
+
+#sidebar svg:hover {
+   stroke-width: 4px;
+   transform: scale(1.2);
 }
 
 /* === HeadLine === */
@@ -565,11 +578,46 @@ https://codepen.io/giuseppe-ocello/pen/ZEJMJRq?editors=1100 */
  }
 
 
+/* Overlay */
 
+.overlay {
+   display: flex;
+   flex-direction: column;
+   position: fixed;
+   background: rgb(116,119,191);
+   background: linear-gradient(180deg, 
+      rgba(116,119,191,1) 0%, 
+      rgba(122,157,169,0.9) 46%, 
+      rgba(129,201,143,1) 100%);
+   justify-content: center;
+   inset: 0;
+   border-radius: 5px;
+   z-index: 100;
+   text-align: center;
+   transition: all 0.3s ease-in;
+ }
 
+.wrapper {
+   width: 300px;
+   background-color: whitesmoke;
+   border: 1px solid lightgrey;
+   border-radius: 15px;
+   padding: 10px;
+   margin-left: auto;
+   margin-right: auto;
+}
 
+.overlay-close {
+   text-align: end;
+   cursor: pointer;
+   font-weight: 500;
+   transition: var(--transition);
+}
 
-
+.overlay-close:hover {
+   font-weight: 800;
+}
+ 
 
  /* === Media Query === */
 

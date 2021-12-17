@@ -23,6 +23,20 @@ function createNewElement (elementName, content, className, appendTo) {
    return element;
 }
 
+// Reusable funtion to create an overlay alert message
+function launchAlert(title, message) {
+   let alertMessage = `
+   <div class="wrapper">
+      <p class="overlay-close">X</p>
+      <div>
+         <h2 class="title">${title}</h2>
+         ${message}
+      </div>
+   </div>
+   `;
+   createNewElement('div', alertMessage, "overlay", body);
+}
+
 // === charts datas === //
 
 // Data for the traffic chart at different time scales
@@ -227,7 +241,7 @@ notificationBell.addEventListener("click" , () => {
 
    for (let i=0; i<=numberOfMessages; i++ ) {
       contentMessage = messages[generateRandomNumber(messages.length,0)];
-      createNewElement ('div', contentMessage, 'notification-message', notificationArea)
+      createNewElement ('div', contentMessage, 'notification-message', notificationArea);
       let topDistance = 45 + 40 * i;
       element.style.top = `${topDistance.toString()}px`;
    }
@@ -285,6 +299,7 @@ alertBanner.addEventListener('click', e => {
 });
 
 // === Messagig Section === //
+const body = document.querySelector("body");
 const messageUserForm = document.querySelector('#message-user');
 const search = document.querySelector("#search-for-user");
 const message = document.querySelector("#message-for-user");
@@ -354,21 +369,37 @@ document.addEventListener('click', (e) => {
 
 // Validates the form before sending the message
 send.addEventListener('click', (e) => {
+   
    if (search.value === "" && message.value ==="") {
       e.preventDefault();
       fieldValidationVisualError(search);
       fieldValidationVisualError(message);
-      alert("Please fill out the User and Message Fiels before Sending");
+      alertmessageSubmission = `
+          <p>Please fill out the User and Message Fiels before Sending</p>
+   `;
+   launchAlert("Hi", alertmessageSubmission);
    } else if (search.value === "") {
       e.preventDefault();
       fieldValidationVisualError(search);
-      alert("Please fill out the User Fiel before Sending");
+      alertmessageSubmission = `
+          <p>Please fill out the User and Message Fiels before Sending</p>
+          `;
+      launchAlert("Hi", alertmessageSubmission);
    } else if (message.value === "") {
       e.preventDefault();
       fieldValidationVisualError(message);
-      alert("Please fill out the Message Fiel before Sending");
+      alertmessageSubmission = `
+         <p>Please fill out the Message Fiel before Sending</p>
+         `;
+      launchAlert("Hi", alertmessageSubmission);
    } else {
-      alert(`Message successfully sent to: ${search.value}`);
+      e.preventDefault();
+      alertmessageSubmission = `
+         <p>Message successfully sent to: ${search.value}</p>
+         `;
+      launchAlert("Hi", alertmessageSubmission);
+      search.value= "";
+      message.value= "";
    } 
 });
 
@@ -452,11 +483,21 @@ saveSettings.addEventListener('click', (e) => {
    if (timeZoneOption.value !== "Not Set") {
       localStorage.setItem('timeZone', timeZoneOption.value);
    } 
-   alert(`Your new settings has been saved:
-      Send Email Notification: ${localStorage.getItem("sendNotifications")}
-      Set Profile to Public: ${localStorage.getItem("setPublicProfile")}
-      Timezone: ${timeZoneOption.value}
-   `);
+
+   alertmessageSettings = `
+          <p>Send Email Notification: ${localStorage.getItem("sendNotifications")}</p>
+          <p>Set Profile to Public: ${localStorage.getItem("setPublicProfile")}</p>
+          <p>Timezone: ${timeZoneOption.value}</p>
+   `;
+   launchAlert("Your Settings has been savedsuccessfully", alertmessageSettings);
    e.preventDefault();
+});
+
+// removes the parent ellement of the clicked element if the class contains close (to refactor and inssert in a function)
+document.addEventListener('click', e => {
+   const element = e.target;
+   if (element.classList.contains("overlay-close")) {
+      element.parentElement.parentElement.remove();
+   }
 });
 
