@@ -26,15 +26,21 @@ function createNewElement (elementName, content, className, appendTo) {
 // Reusable funtion to create an overlay alert message
 function launchAlert(title, message) {
    let alertMessage = `
-   <div class="wrapper">
-      <p class="overlay-close">X</p>
+   <div class="wrapper">   
       <div>
          <h2 class="title">${title}</h2>
          ${message}
       </div>
+      <p class="overlay-close">X</p>
    </div>
    `;
    createNewElement('div', alertMessage, "overlay", body);
+}
+
+// Hilights form's fields if the validation returns an error
+function fieldValidationVisualError(field) {
+   field.style.borderColor = 'red';
+   field.style.borderWidth = '3px';
 }
 
 // === charts datas === //
@@ -398,17 +404,9 @@ send.addEventListener('click', (e) => {
          <p>Message successfully sent to: ${search.value}</p>
          `;
       launchAlert("Hi", alertmessageSubmission);
-      search.value= "";
-      message.value= "";
+
    } 
 });
-
-// Hilights form's fields if the validation returns an error
-function fieldValidationVisualError(field) {
-   field.style.borderColor = 'red';
-   field.style.borderWidth = '3px';
-}
-
 
 // === Settings Section === //
 let sendNotificationsSlider = document.querySelector("#switch-1");
@@ -489,7 +487,7 @@ saveSettings.addEventListener('click', (e) => {
           <p>Set Profile to Public: ${localStorage.getItem("setPublicProfile")}</p>
           <p>Timezone: ${timeZoneOption.value}</p>
    `;
-   launchAlert("Your Settings has been savedsuccessfully", alertmessageSettings);
+   launchAlert("Your Settings has been saved successfully", alertmessageSettings);
    e.preventDefault();
 });
 
@@ -498,6 +496,34 @@ document.addEventListener('click', e => {
    const element = e.target;
    if (element.classList.contains("overlay-close")) {
       element.parentElement.parentElement.remove();
+      if (message.value) {
+         messageUserForm.submit();
+         document.location.reload(true);
+      }   
    }
+   
 });
 
+let navIcon = document.querySelectorAll(".nav-icon");
+let navigation = document.querySelector("#sidebar");
+let navList = document.querySelector(".nav-list");
+
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {  
+   if (document.body.scrollTop > 60 || document.documentElement.scrollTop > 60 && window.innerWidth < 768) {
+      navigation.classList.add("nav-sticky");
+      for (let i =0; i< navIcon.length; i++) {
+         navIcon[i].style.height = "25px";
+      }
+    } else if (document.body.scrollTop > 60 || document.documentElement.scrollTop > 60 && window.innerWidth > 768) {
+      navList.classList.add("nav-list-sticky");
+    } else {
+      navigation.classList.remove("nav-sticky");
+      navList.classList.add("nav-list-sticky");
+      navList.classList.remove("nav-list-sticky");
+      for (let i =0; i< navIcon.length; i++) {
+         navIcon[i].style.height = "30px";
+      }
+    }
+}
